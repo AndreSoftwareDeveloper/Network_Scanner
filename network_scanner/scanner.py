@@ -45,6 +45,7 @@ nmap_top1000_int = load_ports_from_file("../../nmap-top1000.txt")
 for host in hosts:
     tcp_results, unans = sr(IP(dst=host["ip"] / TCP(dport=nmap_top1000_int), timeout=1))
     print(f'Host: {host["ip"]}')
+
     for tcp_conn in tcp_results:
         if not is_tcp_synack(tcp_conn):
             continue
