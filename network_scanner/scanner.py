@@ -17,11 +17,12 @@ def load_ports_from_file(filename):
 
 
 def is_ping_reply(ping):
-    return ping[1][ICMP].type == 0
+    return ping[1][ICMP].type == 0  # ICMP type in second layer of this packet is equals to 0 means, that it's response
+    # for ping (ICMP Echo Reply).
 
 
 def is_tcp_synack(packet):
-    return packet[1][TCP].flags == "SA"
+    return packet[1][TCP].flags == "SA"  # reply for initialization of the TCP connection (SYN-ACK).
 
 
 if len(sys.argv) != 2:
